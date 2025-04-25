@@ -8,12 +8,17 @@ for (var i = 0; i < numOfButtons; i++) {
         var buttonInnerHTML = this.innerHTML
 
         makeSound(buttonInnerHTML);
+
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
-
+//Key Press:
 document.addEventListener("keydown", function(event) {
+
     makeSound(event.key);
+
+    buttonAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -57,4 +62,17 @@ function makeSound(key) {
             console.log(buttonInnerHTML)
         break;
     }
+}
+
+
+//Button Animation:
+function buttonAnimation(currentKey) {
+    
+    var activeButton = document.querySelector("." + currentKey);
+
+    activeButton.classList.add("pressed"); //Adding css
+
+    setTimeout(function() {
+        activeButton.classList.remove("pressed"); //Removing css using setTimout 
+    }, 100)
 }
